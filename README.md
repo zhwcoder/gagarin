@@ -20,6 +20,13 @@ I want to understand the most advanced frontend technology, because it seems to 
 npm install && bower install && gulp
 ```
 
+## Used vendor plugins
+
+- [Lost Grid System](https://github.com/corysimmons/lost) for grids
+- [Swiper](https://github.com/nolimits4web/Swiper) for sliders
+- [Magnific Popup](https://github.com/dimsemenov/Magnific-Popup) for popups
+
+
 ## Next releases
 
 - Do some CSS good architecture :(
@@ -29,7 +36,6 @@ npm install && bower install && gulp
 
 #### Possible additions and improvements
 
-- Do experiments with [cssstats](https://github.com/cssstats/postcss-cssstats)
 - [gulp-svg-sprite](https://github.com/jkphl/gulp-svg-sprite) or [gulp-svgstore](https://github.com/w0rm/gulp-svgstore)
 - [gulp-useref](https://github.com/jonkemp/gulp-useref)
 - [gulp-uncss](https://github.com/ben-eb/gulp-uncss)
