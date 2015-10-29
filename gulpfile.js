@@ -13,11 +13,14 @@ var gulp = require('gulp'),
 
     // postcss and plugins
     postcss = require('gulp-postcss'),
+    postcssSVG = require('postcss-svg'),
     precss = require('precss'),
+    easings = require('postcss-easings'),
     lost = require('lost'),
     cssnano = require('gulp-cssnano'),
     autoprefixer = require('autoprefixer'),
     postcssfocus = require('postcss-focus'),
+    brandcolors = require('postcss-brand-colors'),
     fontmagician = require('postcss-font-magician'),
     pkg = require('./package.json'),
     reload = browserSync.reload;
@@ -51,12 +54,16 @@ var config = {
     server: {
         baseDir: "./build"
     },
-    tunnel: true,
+    tunnel: false,
     host: 'localhost',
     port: 9000,
     logLevel: "silent",
     // logLevel: "info",
-    logPrefix: "Gagarin"
+    logPrefix: "Gagarin",
+    notify: false,
+    ghostMode: false,
+    online: false,
+    open: true
 };
 
 gulp.task('webserver', function () {
@@ -69,10 +76,11 @@ gulp.task('clean', function (cb) {
 
 gulp.task('hello', function () {
   gutil.beep();
-  gutil.log(gutil.colors.white.bgGreen(" ┌─┐┌─┐┌─┐┌─┐┬─┐┬┌┐┌ "));
-  gutil.log(gutil.colors.white.bgGreen(" │ ┬├─┤│ ┬├─┤├┬┘││││ "));
-  gutil.log(gutil.colors.white.bgGreen(" └─┘┴ ┴└─┘┴ ┴┴└─┴┘└┘ "));
-  gutil.log(gutil.colors.white.bgGreen('Welcome to Gagarin v.' + pkg.version + '. Poyekhali!'));
+  gutil.log(gutil.colors.black.bgYellow(" Welcome to          "));
+  gutil.log(gutil.colors.black.bgYellow(" ┌─┐┌─┐┌─┐┌─┐┬─┐┬┌┐┌ "));
+  gutil.log(gutil.colors.black.bgYellow(" │ ┬├─┤│ ┬├─┤├┬┘││││ "));
+  gutil.log(gutil.colors.black.bgYellow(" └─┘┴ ┴└─┘┴ ┴┴└─┴┘└┘ "));
+  gutil.log(gutil.colors.black.bgYellow("             v." + pkg.version + " "));
 });
 
 gulp.task('jade:build', function () {
@@ -96,9 +104,14 @@ gulp.task('style:build', function () {
 
         .pipe( postcss([
             precss,
+            brandcolors,
             lost,
+            postcssSVG({
+                paths: ['src/i/'],
+            }),
             fontmagician,
             postcssfocus,
+            easings,
             autoprefixer({ browsers: ['last 2 versions'] })
         ]))
 
@@ -158,6 +171,7 @@ gulp.task('watch', function(){
     watch([path.watch.fonts], function(event, cb) {
         gulp.start('fonts:build');
     });
+    gutil.log(gutil.colors.black.bgYellow(" All systems are working normally. Let's go! "));
 });
 
 

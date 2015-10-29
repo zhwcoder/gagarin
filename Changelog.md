@@ -1,6 +1,45 @@
+### 2015-27-10 v0.4.2
+
+* Add [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput)
+* Add 2 new social icons (+svg)
+* Small changes in css
+
+### 2015-23-10 v0.4.1
+
+* Add [Tabslet](https://github.com/vdw/Tabslet/)
+* Add [jquery.scrollTo](https://github.com/flesler/jquery.scrollTo)
+* Add [postcss-svg](https://github.com/Pavliko/postcss-svg)
+* Update packages
+
+### 2015-19-10 v0.4.0
+
+* Changed all css structure. Rename folders.
+* Add default pages: test (with all interactive elements), about, contacts
+
+### 2015-19-10 v0.3.8
+
+* Add [postcss-brand-colors](https://github.com/postcss/postcss-brand-colors)
+* Add block with social links in css/jade. Add SVG-icons for it. 
+* Remove [postcss-scss parser](https://github.com/postcss/postcss-scss)
+
+### 2015-16-10 v0.3.7
+
+* Add [postcss-easings](https://github.com/postcss/postcss-easings)
+* Update packages
+
+### 2015-10-10 v0.3.6
+
+* [postcss-inline-comment](https://github.com/moczolaszlo/postcss-inline-comment) → [postcss-scss parser](https://github.com/postcss/postcss-scss)
+* Update Swiper
+
+### 2015-10-10 v0.3.5
+
+* Add [postcss-inline-comment](https://github.com/moczolaszlo/postcss-inline-comment)
+* Small changes in gulpfile.json
+
 ### 2015-07-10 v0.3.4
 
-* A lot od small changes
+* A lot of small changes
 * Add [Swiper](https://github.com/nolimits4web/Swiper)
 * Update packages
 
