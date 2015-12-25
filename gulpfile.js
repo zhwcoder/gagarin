@@ -10,6 +10,8 @@ var gulp = require('gulp'),
     browserSync = require("browser-sync"),
     rigger = require("gulp-rigger"),
     gutil = require('gulp-util'),
+    gulpprettify = require('gulp-prettify'),
+    mqpacker = require('css-mqpacker'),
 
     // postcss and plugins
     postcss = require('gulp-postcss'),
@@ -67,6 +69,30 @@ var config = {
     open: true
 };
 
+var configPrettify = {
+    "indent_size": 4,
+    "indent_char": " ",
+    "eol": "\n",
+    "indent_level": 0,
+    "indent_with_tabs": true,
+    "indent-inner-html": true,
+    "preserve_newlines": true,
+    "max_preserve_newlines": 10,
+    "jslint_happy": false,
+    "space_after_anon_function": false,
+    "brace_style": "collapse",
+    "keep_array_indentation": false,
+    "keep_function_indentation": false,
+    "space_before_conditional": true,
+    "break_chained_methods": false,
+    "eval_code": false,
+    "unescape_strings": false,
+    "wrap_line_length": 0,
+    "wrap_attributes": "auto",
+    "wrap_attributes_indent_size": 4,
+    "end_with_newline": false
+};
+
 gulp.task('webserver', function () {
     browserSync(config);
 });
@@ -84,14 +110,15 @@ gulp.task('hello', function () {
   gutil.log(gutil.colors.black.bgYellow("             v." + pkg.version + " "));
 });
 
-gulp.task('jade:build', function () {
+gulp.task('build:html', function () {
     gulp.src(path.src.jade)
         .pipe(jade({pretty: true}))
+        .pipe(gulpprettify(configPrettify))
         .pipe(gulp.dest(path.build.html))
         .pipe(reload({stream: true}));
 });
 
-gulp.task('js:build', function () {
+gulp.task('build:js', function () {
     gulp.src(path.src.js)
         .pipe(rigger())
         .pipe(uglify())
@@ -99,7 +126,7 @@ gulp.task('js:build', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('style:build', function () {
+gulp.task('build:css', function () {
     gulp.src(path.src.style)
         .pipe(rigger())
 
@@ -114,7 +141,8 @@ gulp.task('style:build', function () {
             postcssCenter,
             postcssfocus,
             easings,
-            autoprefixer({ browsers: ['last 2 versions'] })
+            autoprefixer({ browsers: ['last 2 versions'] }),
+            mqpacker
         ]))
 
         .pipe(cssnano({
@@ -130,7 +158,7 @@ gulp.task('style:build', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('image:build', function () {
+gulp.task('build:images', function () {
     gulp.src(path.src.img)
         .pipe(imagemin({
             progressive: true,
@@ -142,38 +170,38 @@ gulp.task('image:build', function () {
         .pipe(reload({stream: true}));
 });
 
-gulp.task('fonts:build', function() {
+gulp.task('build:fonts', function() {
     gulp.src(path.src.fonts)
         .pipe(gulp.dest(path.build.fonts))
 });
 
 gulp.task('build', [
     'hello',
-    'jade:build',
-    'js:build',
-    'style:build',
-    'fonts:build',
-    'image:build'
+    'build:html',
+    'build:js',
+    'build:css',
+    'build:fonts',
+    'build:images'
 ]);
 
 
 gulp.task('watch', function(){
     watch([path.watch.jade], function(event, cb) {
-        gulp.start('jade:build');
+        gulp.start('build:html');
     });
     watch([path.watch.style], function(event, cb) {
-        gulp.start('style:build');
+        gulp.start('build:css');
     });
     watch([path.watch.js], function(event, cb) {
-        gulp.start('js:build');
+        gulp.start('build:js');
     });
     watch([path.watch.img], function(event, cb) {
-        gulp.start('image:build');
+        gulp.start('build:images');
     });
     watch([path.watch.fonts], function(event, cb) {
-        gulp.start('fonts:build');
+        gulp.start('build:fonts');
     });
-    gutil.log(gutil.colors.black.bgYellow(" All systems are working normally. Let's go! "));
+    
 });
 
 

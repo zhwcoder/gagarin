@@ -1,3 +1,30 @@
+### 2015-10-11 v0.4.7
+
+* Add page load plugin [nprogress](https://github.com/rstacruz/nprogress/)
+* Add links to useful plugins
+* Update packages
+
+### 2015-10-11 v0.4.6
+
+* Add [mqpacker](https://github.com/hail2u/node-css-mqpacker)
+* Update packages
+
+### 2015-10-11 v0.4.5
+
+* Rename Gulp tasks
+* Update packages
+
+### 2015-8-11 v0.4.4
+
+* Add [Fotorama](https://github.com/artpolikarpov/fotorama/)
+* Add custom checkbox
+
+### 2015-6-11 v0.4.3
+
+* Add [gulp-prettify](https://github.com/jonschlinkert/gulp-prettify)
+* Add new social icon for Google+
+* Update packages
+
 ### 2015-27-10 v0.4.2
 
 * Add [jquery.maskedinput](https://github.com/digitalBush/jquery.maskedinput)
